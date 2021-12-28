@@ -47,7 +47,7 @@ const AdminDashboard = () => {
     const edit = async (_id) => {
         try {
             await axios.get(`/product/${_id}`)
-            history.push(`/product/${_id}`)
+            history.push(`/products/${_id}`)
         } catch {
             console.log('error')
         }
