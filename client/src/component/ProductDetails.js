@@ -46,7 +46,8 @@ const ProductDetails = () => {
         setselect(value)
     }
 
-    const edit = async () => {
+    const edit = async (e) => {
+        e.preventDefault();
         const res = await axios.put(`/product/list/${_id}`, sel)
         setselect(res)
     }
