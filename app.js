@@ -6,10 +6,6 @@ var logger = require('morgan');
 var cors = require('cors');
 
 
-if (process.env.Mode_Env = "production") {
-  app.use(express.static("client/build"));
-
-}
 
 
 // var indexRouter = require('./routes/index');
@@ -26,7 +22,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+if (process.env.Mode_Env = "production") {
+  app.use(express.static("client/build"));
 
+}
 
 // view engine setup
 app.use('/uploads', express.static('uploads'))
@@ -48,6 +47,7 @@ app.use('/', usersRouter);
 app.use('/', productRouter);
 app.use('/', admin);
 app.use('/', payment);
+
 
 
 
