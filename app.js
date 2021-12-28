@@ -46,6 +46,13 @@ app.use('/', admin);
 app.use('/', payment);
 
 
+if (process.env.Mode_Env === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+
+}
 
 
 // catch 404 and forward to error handler
@@ -59,15 +66,6 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   next()
 })
-
-if (process.env.Mode_Env = "production") {
-  app.use(express.static("client/build"));
-  app.get("*", function (request, response) {
-    response.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-
-}
-
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
