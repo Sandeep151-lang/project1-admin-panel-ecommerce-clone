@@ -37,6 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
+if (process.env.Mode_Env = "production") {
+  app.use(express.static("client/build"));
+
+}
 
 
 // app.use('/', indexRouter);
@@ -47,10 +51,6 @@ app.use('/', payment);
 
 
 
-if (process.env.Mode_Env = "production") {
-  app.use(express.static("client/build"));
-
-}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
