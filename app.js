@@ -6,6 +6,10 @@ var logger = require('morgan');
 var cors = require('cors');
 
 
+if (process.env.Mode_Env = "production") {
+  app.use(express.static("client/build"));
+
+}
 
 
 // var indexRouter = require('./routes/index');
@@ -37,10 +41,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-if (process.env.Mode_Env = "production") {
-  app.use(express.static("client/build"));
-
-}
 
 
 // app.use('/', indexRouter);
