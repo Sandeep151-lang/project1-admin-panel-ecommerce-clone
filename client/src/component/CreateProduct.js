@@ -9,7 +9,7 @@ const Product = () => {
     const userdata = async () => {
         try {
             const res = await axios.create({
-                baseURL: "http://localhost:5000",
+
                 withCredentials: true,
                 credentials: "include",
             }).get('/about')
