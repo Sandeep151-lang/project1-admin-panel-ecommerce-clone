@@ -1,9 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Form, FormGroup, Label, Input } from 'reactstrap'
-//import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom'
+
 
 const Product = () => {
+    const history = useHistory()
+    const userdata = async () => {
+        try {
+            const res = await axios.create({
+                baseURL: "http://localhost:5000",
+                withCredentials: true,
+                credentials: "include",
+            }).get('/about')
+            // console.log(res.data.message)
+            if (res.status === 200) {
+                localStorage.getItem('jwt');
+            }
+        } catch (err) {
+            history.push('/admin/login')
+        }
+    }
+
+    useEffect(() => {
+        userdata();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const [selectedFile, setSelectedFile] = React.useState(null);
     const [product_name, setproduct_name] = useState();
@@ -21,21 +43,10 @@ const Product = () => {
         setproduct_name("");
         setproduct_price("");
         setproduct_description("");
-
-        // try {
-        //     const url = `http://localhost:5000/product`
-        //     await axios.post(url, formData, {
-        //         headers: {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     })
-        // } catch (error) {
-        //     console.log(error)
-        // }
         const token = window.localStorage.getItem('jwt')
         try {
             const res = await axios.create({
-                // baseURL: "http://localhost:5000",
+
                 withCredentials: true,
                 credentials: "include",
             }).post('/product', formData, {
@@ -78,10 +89,10 @@ const Product = () => {
                 </FormGroup>
                 <FormGroup className="mb-3 mr-sm-2 mb-sm-0">
                     <Label for="exampleEmail" className="mr-sm-2">Product description</Label>
-                    <Input type="text" name="product_description" onChange={(e) => setproduct_description(e.target.value)} value={product_description} product="product description" />
+                    <Input type="text" name="product_description" onChange={(e) => setproduct_description(e.target.value)} value={product_description} placeholder="product description" />
                 </FormGroup>
 
-                <Input type="submit" className="btn btn-primary" />
+                <Input type="submit" className="btn btn-primary mt-3" />
             </Form >
         </div>
     )

@@ -14,7 +14,6 @@ const About = () => {
         try {
 
             const res = await axios.create({
-                // baseURL: "http://localhost:5000",
                 withCredentials: true,
                 credentials: "include",
             }).get('/about')
@@ -39,8 +38,8 @@ const About = () => {
         return <LoadingSpinners />
     } else {
         return (
-            <div>
-                <h1 className="text-center">User Details</h1>
+            <div className='w3-container'>
+                <h1 className="text-center">Admin Details</h1>
 
                 <div className="container mt-5" style={{ "width": "80%", "height": "70%" }}>
                     <Card>

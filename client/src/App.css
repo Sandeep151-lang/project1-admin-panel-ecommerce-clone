@@ -36,11 +36,3 @@
     transform: rotate(360deg);
   }
 }
-@media screen and (max-width: 992px)  {
-  .user-detail {
-    position: absolute;
-    top: 60%!important;
-    font-size: 10px!important;
-    
-  }
-}

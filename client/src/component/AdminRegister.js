@@ -3,8 +3,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import axios from 'axios'
 import { useHistory } from 'react-router'
 
-
-const Register = () => {
+const AdminRegister = () => {
     const history = useHistory();
     const [register, setregister] = useState({
         name: '',
@@ -20,21 +19,19 @@ const Register = () => {
     const onclick = async (e) => {
         e.preventDefault();
         try {
-            const url = `/register`;
+            const url = `/admin/register`;
             const d = await axios.post(url, register);
             setregister(d.data);
             window.alert('user registerd');
-            history.push('/login')
+            history.push('/admin/login')
         } catch {
-            console.log('error')
             window.alert('invalid')
         }
     }
 
-
     return (
         <div className="container">
-            <h2 className="text-center mt-5">Register User</h2>
+            <h2 className="text-center mt-5">Admin Register</h2>
             <Form inline className="mt-5 ml-5">
                 <FormGroup className="mb-3 mr-sm-2 mb-sm-0">
                     <Label for="examplePassword" className="mr-sm-2">Enter Name</Label>
@@ -48,11 +45,11 @@ const Register = () => {
                     <Label for="exampleEmail" className="mr-sm-2">Enter Password</Label>
                     <Input type="password" id="password" placeholder="Enter password" value={register.password} onChange={onchange} />
                 </FormGroup>
-                <Button className='btn my-2  btn-success' onClick={onclick}>submit</Button>
 
+                <Button className='btn my-2  btn-success' onClick={onclick}>submit</Button>
             </Form >
         </div>
     )
 }
 
-export default Register
+export default AdminRegister;
