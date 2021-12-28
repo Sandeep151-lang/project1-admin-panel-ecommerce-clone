@@ -42,7 +42,7 @@ router.post('/product', adminAuth, adminrole, upload.single('images'), async fun
             product_name: req.body.product_name,
             product_price: req.body.product_price,
             product_description: req.body.product_description,
-            product_image: `http://localhost:5000/uploads/${imagefile}`
+            product_image: `/uploads/${imagefile}`
             // product_image:imagefile
         })
         await product.save().then(() => {
