@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var multer = require('multer');
+var aws = require('aws-sdk');
+var multerS3 = require('multer-s3')
 var path = require('path');
 var Product = require('../model/productScehma');
 var adminAuth = require('../authenticate/adminauth');
@@ -9,17 +11,37 @@ var adminAuth = require('../authenticate/adminauth');
 require('../dbcon/conn');
 
 //create images multer use
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/')
-    },
-    filename: function (req, file, cb) {
-        console.log(file)
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-})
-const upload = multer({ storage: storage })
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'uploads/')
+//     },
+//     filename: function (req, file, cb) {
+//         console.log(file)
+//         cb(null, Date.now() + path.extname(file.originalname))
+//     }
+// })
+// const upload = multer({ storage: storage })
+var s3 = new aws.S3({
+    accessKeyId: 'AKIA4DEAPXUBEYEBQ6AJ',
+    secretAccessKey: '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',
+    region: 'ap-south-1'
 
+})
+var uploads3 = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'ecommerce-clone-app',
+        acl: 'public-read',
+        metadata: function (req, file, cb) {
+
+            cb(null, { fieldName: file.fieldname });
+        },
+        key: function (req, file, cb) {
+
+            cb(null, Date.now() + file.originalname)
+        }
+    })
+})
 
 
 //admin authenticate middleware 
@@ -34,19 +56,20 @@ const adminrole = (req, res, next) => {
 
 
 //Post method creating products
-router.post('/product', adminAuth, adminrole, upload.single('images'), async function (req, res) {
+router.post('/product', adminAuth, adminrole, uploads3.single('images'), async function (req, res) {
+
     try {
-        var imagefile = req.file.filename;
         const product = new Product({
             user: req.rootUser._id,
             product_name: req.body.product_name,
             product_price: req.body.product_price,
             product_description: req.body.product_description,
-            product_image: `/uploads/${imagefile}`
+            product_image: req.file.location
             // product_image:imagefile
         })
         await product.save().then(() => {
-            res.status(201).json({ message: `product created successfully` })
+            res.status(201).json({ message: `product created successfully`, file: req.files })
+
         }).catch(() => {
             res.status(400).json({ message: `product not created` })
         })
