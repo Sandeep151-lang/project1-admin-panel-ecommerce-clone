@@ -57,12 +57,12 @@ const Product = () => {
             })
             if (res.status === 201) {
                 localStorage.getItem('jwt');
-                window.alert('product created')
+                window.alert(res.data.message);
 
             }
         } catch (err) {
 
-            window.alert(`error`)
+            window.alert(err.response.data)
 
         }
     }
