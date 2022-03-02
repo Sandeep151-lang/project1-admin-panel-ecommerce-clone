@@ -10,6 +10,17 @@ var adminAuth = require('../authenticate/adminauth');
 
 require('../dbcon/conn');
 
+//create images multer use
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'uploads/')
+//     },
+//     filename: function (req, file, cb) {
+//         console.log(file)
+//         cb(null, Date.now() + path.extname(file.originalname))
+//     }
+// })
+// const upload = multer({ storage: storage })
 var s3 = new aws.S3({
     accessKeyId: 'AKIA4DEAPXUBEYEBQ6AJ',
     secretAccessKey: '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',
@@ -46,10 +57,7 @@ const adminrole = (req, res, next) => {
 
 //Post method creating products
 router.post('/product', adminAuth, adminrole, uploads3.single('images'), async function (req, res) {
-    const { product_name, product_price, product_description } = req.body;
-    if (!product_name || !product_price || !product_description) {
-        return res.status(400).json('please filled the require field')
-    }
+
     try {
         const product = new Product({
             user: req.rootUser._id,
@@ -73,11 +81,13 @@ router.post('/product', adminAuth, adminrole, uploads3.single('images'), async f
 /* GET home page. */
 //Get all products listing
 router.get('/getproduct', async function (req, res) {
-
+    const PAGE_SOZE = 6;
+    const page = parseInt(req.query.page || "0");
+    const total = await Product.countDocuments({});
     try {
-        await Product.find().then((doc) => {
-            res.status(200).json({ message: doc })
-            console.log(doc)
+        await Product.find().limit(PAGE_SOZE).skip(PAGE_SOZE * page).then((doc) => {
+            res.status(200).json({ message: doc, totalPages: Math.ceil(total / PAGE_SOZE) })
+
         })
     } catch {
         res.json({ message: `product not get` })

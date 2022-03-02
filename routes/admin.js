@@ -82,9 +82,12 @@ const adminrole = (req, res, next) => {
 }
 
 router.get('/list', async function (req, res, next) {
+    const PAGE_SOZE = 5;
+    const page = parseInt(req.query.page || "0");
+    const total = await orderlist.countDocuments({});
     try {
-        await orderlist.find().then((doc) => {
-            return res.send({ item: doc })
+        await orderlist.find().limit(PAGE_SOZE).skip(PAGE_SOZE * page).then((doc) => {
+            return res.send({ item: doc, totalPages: Math.ceil(total / PAGE_SOZE) })
         })
     } catch {
         res.status(400).json('error')

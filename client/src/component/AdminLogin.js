@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import axios from 'axios'
 import { useHistory } from 'react-router'
-import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { MyContext } from '../App';
 
@@ -37,11 +37,11 @@ const AdminLogin = () => {
                 localStorage.setItem('jwt', jwt)
                 window.alert('login successfull')
                 history.push('/create')
-                toast("login success");
+
 
             }
-        } catch {
-            window.alert('invalid')
+        } catch (error) {
+            alert(error.response.data.message)
         }
     }
 
@@ -59,7 +59,7 @@ const AdminLogin = () => {
                     <Input type="password" id="password" placeholder="Enter password" value={register.password} onChange={onchange} />
                 </FormGroup>
                 <Button className='btn my-2  btn-success login-button' onClick={onclick}>submit</Button>
-                <ToastContainer />
+
             </Form >
         </div>
     )

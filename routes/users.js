@@ -84,10 +84,14 @@ router.get('/user', async function (req, res, next) {
 
 //GET THE USERS DETAILS AFTER LOGIN
 router.get('/about', jwtAuth, (req, res) => {
-  res.json({ message: req.rootUser })
+  try {
+    return res.json({ message: req.rootUser })
+  } catch (error) {
+    return res.json({ message: error })
+  }
+
   // res.send(req.rootUser)
 })
-
 
 //GET METHODS FOR LOGOUT TO CLEAR COOKIES
 router.get('/logout', async (req, res) => {
