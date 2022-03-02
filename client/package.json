@@ -19,7 +19,9 @@
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^8.1.0",
     "reactstrap": "^9.0.1",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "formik": "^2.2.9",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "SET PORT=5500 && react-scripts start",
