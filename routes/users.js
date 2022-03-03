@@ -59,9 +59,10 @@ router.route('/log').post(async (req, res) => {
         
         console.log(name, email)
         if (!isMatch) {
-        return res.json({ token, name, email })
+          return res.status(400).send({ message: 'invalid credential' })
+        
         } else {
-          return res.status(200).send({ message: 'login successful' })
+          return res.json({ token, name, email })
           next()
         }
       } else {
