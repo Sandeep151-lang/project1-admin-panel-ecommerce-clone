@@ -56,7 +56,7 @@ const adminrole = (req, res, next) => {
 
 
 //Post method creating products
-router.post('/product', adminAuth, adminrole, uploads3.single('images'), async function (req, res) {
+router.post('/product', adminAuth, uploads3.single('images'), async function (req, res) {
 
     try {
         const product = new Product({
