@@ -42,7 +42,7 @@ const Login = () => {
                     alert(post.data.message)
 
                     setinitialvalues(post)
-                    history.push("/admin/login")
+                    history.push("/Admin/login")
 
                 } catch (error) {
                     alert(error.response.data.message)
