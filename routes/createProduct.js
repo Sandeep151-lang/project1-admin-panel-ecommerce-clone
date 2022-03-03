@@ -57,6 +57,9 @@ const adminrole = (req, res, next) => {
 
 //Post method creating products
 router.post('/product', adminAuth, uploads3.single('images'), async function (req, res) {
+    if(!req.body.product_name || !req.body.product_price || !req.body.product_description){
+        return res.status(400).json('plz filled the field')
+    }
 
     try {
         const product = new Product({
