@@ -53,19 +53,19 @@ const Navs = () => {
                         <span className="navbar-text">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <NavLink className='nav-link' to="/about">About</NavLink>
+                                    <NavLink className='nav-link' to="/About">About</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className='nav-link' to="/products">Product-List</NavLink>
+                                    <NavLink className='nav-link' to="/Products">Product-List</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className='nav-link' to="/create">Create-Product</NavLink>
+                                    <NavLink className='nav-link' to="/Create">Create-Product</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className='nav-link' to="/admin/dashboard">Order-List</NavLink>
+                                    <NavLink className='nav-link' to="/Admin/dashboard">Order-List</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className='nav-link' to="/logout">Logout</NavLink>
+                                    <NavLink className='nav-link' to="/Logout">Logout</NavLink>
                                 </li>
                             </ul>
 
@@ -90,10 +90,10 @@ const Navs = () => {
                         <span className="navbar-text">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <NavLink className='nav-link' to="/admin/login">Login</NavLink>
+                                    <NavLink className='nav-link' to="/Admin/login">Login</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className='nav-link' to="/admin/register">Register</NavLink>
+                                    <NavLink className='nav-link' to="/Admin/register">Register</NavLink>
                                 </li>
 
                             </ul>
