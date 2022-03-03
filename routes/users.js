@@ -43,7 +43,7 @@ router.route('/log').post(async (req, res) => {
   const { email, password } = req.body
   try {
     if (!email || !password) {
-      return res.send({ message: 'plz filled the data' })
+      return res.status(400).send({ message: 'plz filled the data' })
     } else {
       const singin = await User.findOne({ email: email });
       if (singin) {
