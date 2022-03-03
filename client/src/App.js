@@ -27,14 +27,14 @@ const App = () => {
         <Navs />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path="/create" component={CreaProduct} />
-          <Route path="/about" component={About} />
-          <Route path="/admin/login" component={AdminLogin} />
-          <Route path="/admin/register" component={AdminRegister} />
-          <Route path="/admin/dashboard" component={AdminDashboard} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/products/:_id" component={ProductDetails} />
-          <Route path="/products" component={Products} />
+          <Route path="/Create" component={CreaProduct} />
+          <Route path="/About" component={About} />
+          <Route path="/Admin/login" component={AdminLogin} />
+          <Route path="/Admin/register" component={AdminRegister} />
+          <Route path="/Admin/dashboard" component={AdminDashboard} />
+          <Route path="/Logout" component={Logout} />
+          <Route path="/Products/:_id" component={ProductDetails} />
+          <Route path="/Products" component={Products} />
           <Redirect to="/" />
         </Switch>
       </MyContext.Provider>
