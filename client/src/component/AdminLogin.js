@@ -49,6 +49,7 @@ const AdminLogin = () => {
     return (
         <div className="container">
             <h2 className="text-center mt-5">Admin Login</h2>
+        <hr/>
             <Form inline className="mt-5 ml-5">
                 <FormGroup className="mb-3 mr-sm-2 mb-sm-0">
                     <Label for="examplePassword" className="mr-sm-2">Enter email</Label>
@@ -58,7 +59,7 @@ const AdminLogin = () => {
                     <Label for="exampleEmail" className="mr-sm-2">Enter Password</Label>
                     <Input type="password" id="password" placeholder="Enter password" value={register.password} onChange={onchange} />
                 </FormGroup>
-                <Button className='btn my-2  btn-success login-button' style={{'width':'100%'}} onClick={onclick}>submit</Button>
+                <Button className='btn my-3  btn-success login-button' style={{'width':'100%'}} onClick={onclick}>submit</Button>
 
             </Form >
         </div>
