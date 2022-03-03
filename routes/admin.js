@@ -40,10 +40,10 @@ router.post('/admin/register', async (req, res, next) => {
 
 //admin login post method 
 router.post('/admin/login', async (req, res, next) => {
-    const { email, password } = req.body
+    const { email, password } = req.body;
     try {
         if (!email || !password) {
-            return res.send({ message: 'plz filled the data' })
+            return res.status(400).send({ message: 'plz filled the data' })
         } else {
             const singin = await User.findOne({ email: email });
             if (singin && singin.role === "admin") {
@@ -55,20 +55,20 @@ router.post('/admin/login', async (req, res, next) => {
                     httpOnly: true
                 })
                 const { name, email } = singin;
-                res.json({ token, name, email })
+                
                 if (!isMatch) {
-                    return res.status(401).send({ message: 'invalid user' })
+                    return res.status(401).send({ message: 'invalid credential' })
                 } else {
-                    return res.status(200).send({ message: 'login success' })
-                    next()
+                  return  res.status(200).json({ token, name, email })
+                  
                 }
             } else {
-                console.log(`only admin can access`)
-                res.status(400).json({ message: `error` })
+                
+              return  res.status(400).json({ message: `error` })
             }
         }
     } catch (error) {
-        res.status(400).send({ message: 'error' })
+       return res.status(400).send({ message: 'error' })
     }
 })
 
