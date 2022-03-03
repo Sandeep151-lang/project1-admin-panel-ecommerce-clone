@@ -36,7 +36,7 @@ const AdminLogin = () => {
                 dispatch({ type: 'USER', payload: true })
                 localStorage.setItem('jwt', jwt)
                 window.alert('login successfull')
-                history.push('/create')
+                history.push('/Create')
 
 
             }
