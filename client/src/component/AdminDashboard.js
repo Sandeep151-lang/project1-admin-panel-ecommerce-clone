@@ -32,7 +32,7 @@ const AdminDashboard = () => {
                 setloading(false);
             }
         } catch (err) {
-            history.push('/admin/login')
+            history.push('/Admin/login')
         }
     }
 
