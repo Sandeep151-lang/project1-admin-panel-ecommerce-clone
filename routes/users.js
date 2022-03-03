@@ -41,9 +41,6 @@ router.post('/register', async (req, res, next) => {
 //POST METHOD FOR LOGING THE USERS
 router.route('/log').post(async (req, res) => {
   const { email, password } = req.body
-  if(!email || !password){
-    return res.status(400).json({message:'plz filled the required filled})
-                                }
   try {
     if (!email || !password) {
       return res.send({ message: 'plz filled the data' })
@@ -59,8 +56,6 @@ router.route('/log').post(async (req, res) => {
           httpOnly: true
         })
         const { name, email } = singin;
-        
-        console.log(name, email)
         if (!isMatch) {
           return res.status(400).send({ message: 'invalid credential' })
         
