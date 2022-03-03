@@ -95,8 +95,13 @@ router.get('/about', jwtAuth, (req, res) => {
 
 //GET METHODS FOR LOGOUT TO CLEAR COOKIES
 router.get('/logout', async (req, res) => {
-  res.clearCookie('jwt', { path: '/' });
-  res.status(200).json({ message: `logout successfull` })
+  try{
+     res.clearCookie('jwt', { path: '/' });
+ return res.status(200).json({ message: `logout successfull` })
+  }catch(error){
+    return res.status(400).json({message:"error"})
+  }
+ 
 })
 
 
