@@ -25,7 +25,7 @@ const About = () => {
                 setloading(false);
             }
         } catch (err) {
-            history.push('/login')
+            history.push('/Login')
             window.alert(`please login`)
         }
     }
