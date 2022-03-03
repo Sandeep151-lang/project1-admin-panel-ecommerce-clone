@@ -60,11 +60,11 @@ router.route('/log').post(async (req, res) => {
           return res.status(400).send({ message: 'invalid credential' })
         
         } else {
-          return res.json({ token, name, email })
+          return res.status(200).json({ token, name, email })
           next()
         }
       } else {
-       return res.status(400).json(`error`)
+       return res.status(400).json({message:'error'})
       }
     }
   } catch (error) {
