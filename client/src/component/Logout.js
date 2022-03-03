@@ -13,7 +13,7 @@ const Logout = () => {
             credentials: "include",
         }).get('/logout').then((res) => {
             dispatch({ type: 'USER', payload: false })
-            history.push('/admin/login', { replace: true })
+            history.push('/Admin/login', { replace: true })
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
